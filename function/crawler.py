@@ -10,10 +10,11 @@ import pandas as pd
 
 
 def get_ex_rate():
-    ex_url = 'http://www.boc.cn/sourcedb/whpj/index.html'
+    ex_url = 'http://webforex.hermes.hexun.com/forex/quotelist?code=FOREXUSDCNY&column=Code,Price'
     ex_html = requests.get(ex_url).content.decode('utf8')
-    ex_rate = etree.HTML(ex_html).xpath('//table[@cellpadding="0"]/tr[18]/td/text()')
-    return float(ex_rate[5])/100
+    ex_rate_data = re.findall("{.*}", str(ex_html))[0]
+    ex_rate = json.loads(ex_rate_data)
+    return ex_rate["Data"][0][0][1]/10000
 
 
 def get_price_ratio(_3rd_price, steam_price):
