@@ -87,5 +87,7 @@ def price_compare(game_name, _3rd_params, threshold=1, itemlen=0, sleeptime=2,
     except (ValueError, KeyError):
         return pd.DataFrame([])
     if savefile:
+        if not os.path.exists(FileSavePath):
+            os.makedirs(FileSavePath)
         compare_result.to_csv(FileSavePath + 'result_%s.csv' % game_name, index=False)
     return compare_result
