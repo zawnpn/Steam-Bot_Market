@@ -57,7 +57,7 @@ def get_3rd_detail(_3rd_url, _3rd_re, p_min=5, p_max=500):
 
 
 def price_compare(game_name, _3rd_params, threshold=1, itemlen=0, sleeptime=2,
-                  days=5, p_min=5, p_max=500, outprint=True, savefile=True):
+                  counts=5, p_min=5, p_max=500, outprint=True, savefile=True):
     _3rd_names, _3rd_prices = get_3rd_detail(_3rd_params[0], _3rd_params[1], p_min, p_max)
     ratios = []
     price_params = []
@@ -67,7 +67,7 @@ def price_compare(game_name, _3rd_params, threshold=1, itemlen=0, sleeptime=2,
         itemlen = len(_3rd_names)
     for i in range(itemlen):
         time.sleep(sleeptime)
-        price_param = get_market_detail(gameIds[game_name], _3rd_names[i], day_thresh=days)
+        price_param = get_market_detail(gameIds[game_name], _3rd_names[i], day_thresh=counts)
         if price_param:
             ratio = get_price_ratio(_3rd_prices[i], price_param[1] * ex_rate)
             price_params.append(price_param)
@@ -79,7 +79,7 @@ def price_compare(game_name, _3rd_params, threshold=1, itemlen=0, sleeptime=2,
         else:
             continue
     compare_result = np.column_stack((item_names, ratios, price_params))
-    r_columns = ['Name', 'Ratio', 'Avg(%d)' % days, 'Med(%d)' % days, 'Range(%d)' % days, 'Var(%d)' % days]
+    r_columns = ['Name', 'Ratio', 'Avg(%d)' % counts, 'Med(%d)' % counts, 'Range(%d)' % counts, 'Var(%d)' % counts]
     try:
         compare_result = pd.DataFrame(compare_result, columns=r_columns, dtype='object')
 
