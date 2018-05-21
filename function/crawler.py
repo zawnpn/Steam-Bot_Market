@@ -7,6 +7,7 @@ from lxml import etree
 import time
 import numpy as np
 import pandas as pd
+import json
 
 
 def get_ex_rate():
