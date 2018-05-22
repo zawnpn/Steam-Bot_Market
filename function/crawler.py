@@ -19,7 +19,7 @@ def get_ex_rate():
 
 
 def get_price_ratio(_3rd_price, steam_price):
-    ratio = float(_3rd_price)/(steam_price*0.85)
+    ratio = float(_3rd_price*1.15)/(steam_price)
     return ratio
 
 
