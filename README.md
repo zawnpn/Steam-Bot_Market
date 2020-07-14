@@ -27,6 +27,6 @@ Simple tool to help find good price on steam market.
  - You can use `crontab` to set up scheduled tasks
       
 ## Author
-Blog:[Wanpeng Zhang](http://www.oncemath.com)
+Blog:[Wanpeng Zhang](https://www.zhangwp.com)
 
 E-mail:zawnpn@gmail.com
